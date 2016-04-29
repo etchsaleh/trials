@@ -1,0 +1,48 @@
+//
+//  main.c
+//  Caesar's Cipher for lowercase and uppercase letters.
+//
+//  Created by Hesham Saleh on 8/15/15.
+//  Copyright (c) 2015 Hesham Saleh. All rights reserved.
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <math.h>
+
+int main()
+{
+    char text[100];
+    int n;
+    
+    printf("Please type in text:\n");
+    scanf("%[^\n]s", text); // it means read until you meet '\n', then trash that '\n'.
+    
+    printf("\nRotation number:  "); // rotates letters to the right.
+    scanf("%d",&n), printf("\n");
+    
+    for ( int i = 0; text[i] != '\0'; i++ )
+    {
+        if((text[i] >= 'a' && text[i] <= 'z'))
+            
+            text[i] = (text[i] - 'a' + n) % 26 + 'a';
+        
+        else if((text[i] >= 'A' && text[i] <= 'Z'))
+            
+            text[i] = (text[i] - 'A' + n) % 26 + 'A';
+    }
+    
+    
+    
+    //   text[i] - 'a'  -> converts text[i] to a number between 0 and 25.
+    //   + n            -> add the cipher value.
+    //   % 26           -> wrap as necessary so the value is between 0 and 25.
+    //   + 'a'          -> convert back to a letter between 'a' and 'z'.
+    
+    
+    printf("Encrypted text:\n%s", text);
+    
+    return 0;
+}
